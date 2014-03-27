@@ -1,0 +1,2 @@
++ Use a different input to control the paddles. Perhaps an [Ultrasonic distance sensor](https://www.sparkfun.com/products/639), using the [NewPing library](https://code.google.com/p/arduino-new-ping/)? Or a [membrane potentiometer](https://www.adafruit.com/products/178) or a [flex sensor](https://www.adafruit.com/products/1070)?
++ Modify the Processing code to use a different coordinated system: Use the first coordinate as the distance from the center of the output window, and the second coordinate as the angle from a vertical line up from the center.
