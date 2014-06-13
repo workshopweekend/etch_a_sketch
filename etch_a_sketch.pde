@@ -32,19 +32,15 @@ void mouseClicked() {
 
 void readSerial() {  
   int x; int y;
-  while (port.available() > 10) {
-    String s = port.readStringUntil('\n');
+  String s;
+  while ((s = port.readStringUntil('\n')) != null) {
+    String[] parts = s.substring(0, s.length()-2).split(",");
+    if (parts.length == 2) {
 
-    if (s != null) {
-      int index = s.indexOf(",");
-      if (index >= 0) {
-
-        x = int(s.substring(0, index))/2;
-        y = int(s.substring(index+1, s.length()-2))/2;
-        
-        handleData(x, y);
-      }
+      x = int(parts[0])/2;
+      y = int(parts[1])/2;
+      
+      handleData(x, y);
     }
   }
 }
-
