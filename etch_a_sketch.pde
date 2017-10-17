@@ -4,9 +4,12 @@
 import processing.serial.*;
 
 Serial port;
-String serialInterface = "/dev/tty.usbmodem-blah";
+String serialInterface = "/dev/cu.usbmodem-blah";
 int lastX = -1;
 int lastY = -1;
+int x;
+int y;
+String nextXY;
 
 void setup() {
   size(512, 512);
@@ -15,16 +18,20 @@ void setup() {
   port.bufferUntil('\n');
 }
 
-void handleData(int x, int y) {
+void draw() {
+  String[] parts = splitTokens(nextXY);
+  
+  if (parts.length < 2) {
+    return;
+  }
+  x = int(parts[0])/2;
+  y = int(parts[1])/2;
+  
   if (lastX >= 0 && lastY >= 0) {
     line(x, y, lastX, lastY);
   }
   lastX = x;
   lastY = y;
-}  
-
-void draw() {
-  // nothing to do here
 }
 
 void mouseClicked() {
@@ -32,11 +39,5 @@ void mouseClicked() {
 }
 
 void serialEvent(Serial p) {
-  int[] parts = int(p.readString().trim().split(","));
-  if (parts.length == 2) {
-    int x = parts[0]/2;
-    int y = parts[1]/2;
-
-    handleData(x, y);
-  }    
+  nextXY = p.readString();
 }
