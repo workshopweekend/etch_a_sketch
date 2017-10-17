@@ -21,17 +21,16 @@ void setup() {
 void draw() {
   String[] parts = splitTokens(nextXY);
   
-  if (parts.length < 2) {
-    return;
+  if (parts.length >= 2) {
+    x = int(parts[0])/2;
+    y = int(parts[1])/2;
+
+    if (lastX >= 0 && lastY >= 0) {
+      line(x, y, lastX, lastY);
+    }
+    lastX = x;
+    lastY = y;
   }
-  x = int(parts[0])/2;
-  y = int(parts[1])/2;
-  
-  if (lastX >= 0 && lastY >= 0) {
-    line(x, y, lastX, lastY);
-  }
-  lastX = x;
-  lastY = y;
 }
 
 void mouseClicked() {
