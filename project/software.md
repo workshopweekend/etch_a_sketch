@@ -8,6 +8,6 @@
 
 5.  Copy the following code into a new Processing sketch:
     <%= etch_a_sketch.pde =%>
-6.  Replace the string: `/dev/tty.usbmodel-blah` with the serial port that appears in the lower-right of your Arduino window.
+6.  Replace the string: `/dev/cu.usbmodem-blah` with the serial port that appears in the lower-right of your Arduino window.
 
 7.  Run the Processing sketch, and rotate the potentiometers!
